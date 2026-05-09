@@ -3,7 +3,7 @@ Data count;		set demo_merge;		if SDDSRVYR >= 5;	Run;	*45462 sample persons;
 %include "D:\gaolab\DGA2025-2030\SAS code\diet_2d_2005_2018.sas";		*Output: Diet;
 Data Diet_In;	set Diet;	Run;							*Create input dataset for fped;
 %include "D:\gaolab\DGA2025-2030\SAS code\DataFIELD.sas";				*Output:FDCD_9918_GHGE;		*Ensured all food commodities mentioned in FCID dataset have GHGE info;
-*¡üThis version included new FCID recipes used for substitution analysis;
+*Â¡Ã¼This version included new FCID recipes used for substitution analysis;
 %include "D:\gaolab\DGA2025-2030\SAS code\TOT_2D\FPED.sas";				*Need input: Diet_In, output: INDFOOD_OUT;
 Data INDFOOD;	set INDFOOD_OUT;	Run;
 
@@ -128,27 +128,6 @@ Data INDPERS;
 		CO_DGA_17 = PERS_AV_DGA17_GHGE / PERS_AV_DGA17_Gram;		CO_DGA_18 = PERS_AV_DGA18_GHGE / PERS_AV_DGA18_Gram;				
 Run;
 
-Data INDPERS;
-	set INDPERS;
-	IF CO_DGA_1 = . THEN CO_DGA_1 = 0;		
-	IF CO_DGA_2 = . THEN CO_DGA_2 = 0;
-	IF CO_DGA_3 = . THEN CO_DGA_3 = 0;
-	IF CO_DGA_4 = . THEN CO_DGA_4 = 0;
-	IF CO_DGA_5 = . THEN CO_DGA_5 = 0;
-	IF CO_DGA_6 = . THEN CO_DGA_6 = 0;
-	IF CO_DGA_7 = . THEN CO_DGA_7 = 0;
-	IF CO_DGA_8 = . THEN CO_DGA_8 = 0;
-	IF CO_DGA_9 = . THEN CO_DGA_9 = 0;		
-	IF CO_DGA_10 = . THEN CO_DGA_10 = 0;
-	IF CO_DGA_11 = . THEN CO_DGA_11 = 0;
-	IF CO_DGA_12 = . THEN CO_DGA_12 = 0;
-	IF CO_DGA_13 = . THEN CO_DGA_13 = 0;
-	IF CO_DGA_14 = . THEN CO_DGA_14 = 0;
-	IF CO_DGA_15 = . THEN CO_DGA_15 = 0;
-	IF CO_DGA_16 = . THEN CO_DGA_16 = 0;
-	IF CO_DGA_17 = . THEN CO_DGA_17 = 0;
-	IF CO_DGA_18 = . THEN CO_DGA_18 = 0;
-Run;
 
 Proc surveymeans data=INDPERS;
 	Strata SDMVSTRA;	Cluster SDMVPSU;	Weight WTDRD12;	
